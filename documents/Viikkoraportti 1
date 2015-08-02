@@ -1,0 +1,18 @@
+Viikko #1
+--------
+
+Tällä viikolla lähinnä perehdyin A* algoritmin teoriaan ja ymmärsin miten heusrestiikka toimii,
+sekä miten se vaikuttaa algoritmin nopeuteen. Tein myös selvää eroa Dijkstran ja A* hakualgoritmien välissä,
+Dijkstra tuntuisi olevan vain poikkeustapaus nähden A* algoritmiin.
+
+Kokeilin muutaman scratch version algoritmista nopeasti, ne tuntuivat toimivan ihan OK.
+En kuitenkaan commitoinut niitä repositorioon, koska koodi ei ollut tarpeeksi hyvää, vaan lähinnä testimielessä.
+
+Erityisesti ei jäänyt tällä viikolla ainakaan mikään epäselväksi, ainoa kömmähdys oli deadlinen kanssa,
+kun katsoin vahingossa että deadline olisi 2.8. sunnuntaina,
+vaikka se olikin vain ensimmäisen viikon päättyminen, ja deadline 30.7. :(
+
+Seuraavaksi aloitan ensiviikolla algoritmin toteutuksen. Keskityn aluksin ns 'kartan' luomiseen, tod. näk. neliö n x n kartta.
+Sen jälkeen lasken a --- b pisteiden pituuden esim aluksi manhattan metodilla ja sen jälkeen rupean työstämään itse algoritmia.
+
+Tarkoituksena olisi tehdä useampi reitinhakualgoritmi ja vertailla niitä keskenään, esim nopeuksia ja poikkeustapauksia.
