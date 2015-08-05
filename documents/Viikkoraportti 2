@@ -1,0 +1,23 @@
+Viikko #2
+--------
+
+Tällä viikolla sairastelun lomassa tehtyä koodia.
+Tavoitteena oli saada karten generointi spritesheetistä toimimaan,
+ja muutamana mutkan kautta homma skulaa ja generointi toimii.
+
+Pieni muutos suunnitelmissa oli pythonista hyppy javascriptiin,
+graafinen toteutus hieman helpompi sekä tutumpi kieli.
+
+Tällä viikolla tutkinut heurestiikkoja ja miten ne toimivat,
+kuten viikko raportti #1 mainittiin, Manhattan tuntuu olevan suosituin
+heurestiikka, mutta voidaan kayttaa myos esim. linnuntietä.
+Tärketää kuitenkin on, että heurestiikka ei ole liian pieni.
+Eli ns 'liian lyhyt' matka pisteeseen.
+
+Ainoa ongelma tällä viikolla sairastelu, sekä erittäin lämpimät säät
+hieman haitanneet työskentelyä, en ehtinyt itse reitinhakua vielä aloittamaan
+sen takia. Toivottavasti viikonlopun aikana saisi jotain hienoa siihenkin.
+
+Seuraavaksi tavoitteenani on aloittaa itse reitinhaku. Kun ensimmäinen versio
+on valmis, idea laajentaa ja antaa käyttäjälle mahdollisuus valita eri asioita,
+esim heurestiikkaa sun muita.
