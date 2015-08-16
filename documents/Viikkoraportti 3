@@ -1,0 +1,20 @@
+Viikko #3
+--------
+
+A* algoritmi on nyt valmis ja toimii. Muutamia ongelma kohtia löytyy,
+kuten alkupiste/alkusolmu voi olla seinä, se täytyy korjata.
+Tällä hetkellä ainoa mahdollinen heurestiikka on manhattan, mutta
+niitä tulossa lisää ainakin seuraavaksi.
+
+Tavoitteena tulevalle viikolle on laajentaa ohjelmaa, ja antaa
+käyttäjälle mahdollisuus valita eri asetuksia.
+Tällä hetkellä käyttäjä voi vain valita seinien satunnaisuuden,
+sekä muokata seiniä, joko ruksaamalla oikealta checkboxin tai
+painamalla shift.
+
+Törmäsin myös mielenkiintoiseen jump point searchiin, jota olen
+hieman lukenut, siihen pitänee tutustua paremmin.
+
+Muutamia linkkejä joita olen selaillut:
+https://harablog.wordpress.com/category/pathfinding/
+http://theory.stanford.edu/~amitp/GameProgramming/
