@@ -11,12 +11,18 @@
     </style>
   </head>
   <body onload='onload()'>
-    <h2>A*</h2>
-    <p>
-      Clicking on the map generates a new map. <br />
-      <s>Clicking on the map generates a new route from the old 'end' point.</s>
-    </p>
+    <div style="float:right">
+    <h1>A*</h1>
+    <p> Clicking on the map generates a new route from the old 'end' point. </p>
     <button onClick='createMap()'> New map </button>
+    <h2>Settings</h2>
+    <hr/>
+    <label> Draw on map </label>
+    <input type="checkbox" id="draw_on_map" /><br /><br />
+
+    <label>Change of wall</label>
+    <input type="number" max="100" min="0" tick="1" id="change_of_wall" onchange="handleWallChanges(this)" value="35"/>%<br/>
+  </div>
     <br/>
     <canvas id="canvas"></canvas>
   </body>
