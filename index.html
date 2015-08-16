@@ -8,6 +8,10 @@
       canvas{
         border:1px solid gray;
       }
+      /*Select elements next to labels*/
+      label + *{
+        margin-bottom:15px;
+      }
     </style>
   </head>
   <body onload='onload()'>
@@ -15,13 +19,22 @@
     <h1>A*</h1>
     <p> Clicking on the map generates a new route from the old 'end' point. </p>
     <button onClick='createMap()'> New map </button>
+
     <h2>Settings</h2>
     <hr/>
+    <h3>Map settings</h3>
     <label> Draw on map </label>
-    <input type="checkbox" id="draw_on_map" /><br /><br />
+    <input type="checkbox" id="draw_on_map" />
 
     <label>Change of wall</label>
     <input type="number" max="100" min="0" tick="1" id="change_of_wall" onchange="handleWallChanges(this)" value="35"/>%<br/>
+
+
+    <h3>Algorithm settings</h3>
+    <label>Heuristic function</label>
+    <select>
+      <option>Manhattan</option>
+    </select>
   </div>
     <br/>
     <canvas id="canvas"></canvas>
