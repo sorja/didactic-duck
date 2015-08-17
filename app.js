@@ -16,8 +16,8 @@ var canvas = null
   , spritesheetLoaded = false
 
   , world = [[]]
-  , worldWidth = 40
-  , worldHeight = 40
+  , worldWidth = 100
+  , worldHeight = 100
 
   , tileWidth = 8
   , tileHeight = 8
@@ -25,7 +25,9 @@ var canvas = null
   , pathStart = [worldWidth,worldHeight]
   , pathEnd = [0,0]
   , currentPath = []
-  , chanceOfWall = 0.35;
+
+  , chanceOfWall = 0.35
+  , elapsedTime = null;
 
 // ie console fix
 if (typeof console == "undefined") var console = { log: function() {} };
@@ -124,11 +126,13 @@ function handleClick(e) {
     return;
   }
 
-  pathStart = pathEnd;
+  pathStart = pathEnd;7
   pathEnd = cell;
 
+  var startTime = new Date().getTime();
   // calculate path
   currentPath = findPath(world,pathStart,pathEnd);
+  displayTime(startTime);
   draw();
 }
 
@@ -295,6 +299,10 @@ function findPath(world, pathStart, pathEnd) {
   } ();
 }
 
+function displayTime(e){
+  var curr = new Date().getTime();
+  document.getElementById("time").innerHTML = curr - e + "ms";
+}
 /*
   Basic node 'class' (function)
   Parent: Parent node

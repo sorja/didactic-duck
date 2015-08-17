@@ -3,8 +3,6 @@
   <head>
     <meta charset="utf-8">
     <title>A*</title>
-    <script src="app.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <style media="screen">
       canvas{
         border:1px solid gray;
@@ -16,8 +14,9 @@
     </style>
   </head>
   <body onload='onload()'>
+    <h1> A* </h1>
+
     <div style="float:right">
-    <h1>A*</h1>
     <p> Clicking on the map generates a new route from the old 'end' point. </p>
     <button onClick='createMap()'> New map </button>
 
@@ -25,10 +24,25 @@
     <hr/>
     <h3>Map settings</h3>
     <label> Draw on map </label>
-    <input type="checkbox" id="draw_on_map" />
+    <input type="checkbox" id="draw_on_map" /><br />
 
-    <label>Change of wall</label>
-    <input type="number" max="100" min="0" tick="1" id="change_of_wall" onchange="handleWallChanges(this)" value="35"/>%<br/>
+    <label>Chance of wall</label>
+    <input type="number"
+           max="100"
+           min="0"
+           tick="1"
+           id="chance_of_wall"
+           onchange="handleWallChanges(this)"
+           value="35"/>%<br/>
+
+    <label> Map size </label>
+    <input type="number"
+           max="350"
+           min="10"
+           tick="1"
+           id="map_size"
+           onchange="handleMapSizeChanges(this)"
+           value="100"/><br/>
 
 
     <h3>Algorithm settings</h3>
@@ -38,6 +52,8 @@
     </select>
   </div>
     <br/>
+    <h2>Elapsed time: <span id="time"> none </span><h2>
     <canvas id="canvas"></canvas>
+    <script src="app.js"></script>
   </body>
 </html>
