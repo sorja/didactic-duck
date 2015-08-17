@@ -3,68 +3,81 @@
   <head>
     <meta charset="utf-8">
     <title>A*</title>
+    <link rel="stylesheet" type="text/css" href="http://cdn.foundation5.zurb.com/foundation.css">
     <style media="screen">
       canvas{
         border:1px solid gray;
+        margin:0;
+        padding:0;
       }
       /*Select elements next to labels*/
       label + *{
         margin-bottom:15px;
       }
+
+      input[type="number"], select{
+        width:100px !important;
+      }
     </style>
   </head>
   <body onload='onload()'>
-    <h1> A* </h1>
+    <div class="">
+      <div class="large-9 columns">
+        <h1>A*</h1>
+        <canvas id="canvas"></canvas>
+      </div>
+      <div class="large-3 columns">
+        <br/>
+        <button onClick='createMap()'> New map </button>
+        <p> Clicking on the map generates a new route from the old 'end' point. <br/>
+        Clicking shift allows user to create walls or remove them <p>
 
-    <div style="float:right">
-    <p> Clicking on the map generates a new route from the old 'end' point. </p>
-    <button onClick='createMap()'> New map </button>
+        <h2>Settings</h2>
+        <hr/>
+        <h3>Map settings</h3>
+        <label> Draw on map </label>
+        <input type="checkbox" id="draw_on_map" /><br />
 
-    <h2>Settings</h2>
-    <hr/>
-    <h3>Map settings</h3>
-    <label> Draw on map </label>
-    <input type="checkbox" id="draw_on_map" /><br />
+        <label>Chance of wall (%)</label>
+        <input type="number"
+               max="100"
+               min="0"
+               tick="1"
+               id="chance_of_wall"
+               onchange="handleWallChanges(this)"
+               value="35"/><br/>
 
-    <label>Chance of wall</label>
-    <input type="number"
-           max="100"
-           min="0"
-           tick="1"
-           id="chance_of_wall"
-           onchange="handleWallChanges(this)"
-           value="35"/>%<br/>
+        <label> Map size (x * y) </label>
+        <input type="number"
+               max="350"
+               min="10"
+               tick="1"
+               id="map_size"
+               onchange="handleMapSizeChanges(this)"
+               value="100"/><br/>
 
-    <label> Map size </label>
-    <input type="number"
-           max="350"
-           min="10"
-           tick="1"
-           id="map_size"
-           onchange="handleMapSizeChanges(this)"
-           value="100"/><br/>
-
-    <label> Cell size </label>
-    <input type="number"
-           max="25"
-           min="1"
-           tick="1"
-           id="cell_size"
-           onchange="handleCellSizeChanges(this)"
-           value="8"/><br/>
+        <label> Cell size (px) </label>
+        <input type="number"
+               max="25"
+               min="1"
+               tick="1"
+               id="cell_size"
+               onchange="handleCellSizeChanges(this)"
+               value="8"/><br/>
 
 
-    <h3>Algorithm settings</h3>
-    <label>Heuristic function</label>
-    <select id="heuristic_function">
-      <option>Manhattan</option>
-      <option>Diagonal</option>
-    </select>
-  </div>
-    <br/>
-    <h2>Elapsed time: <span id="time"> none </span><h2>
-    <h2>Path length: <span id="length"> none </span><h2>
-    <canvas id="canvas"></canvas>
+        <h3>Algorithm settings</h3>
+        <label>Heuristic function</label>
+        <select id="heuristic_function">
+          <option>Manhattan</option>
+          <option>Diagonal</option>
+        </select>
+
+        <h3>Info</h3>
+        <h2>Elapsed time: <span id="time"> none </span><h2>
+        <h2>Path length: <span id="length"> none </span><h2>
+      </div>
+    </div>
     <script src="app.js"></script>
     <script src="ui.js"></script>
   </body>
