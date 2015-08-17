@@ -16,11 +16,11 @@ var canvas = null
   , spritesheetLoaded = false
 
   , world = [[]]
-  , worldWidth = 20
-  , worldHeight = 20
+  , worldWidth = 40
+  , worldHeight = 40
 
-  , tileWidth = 32
-  , tileHeight = 32
+  , tileWidth = 8
+  , tileHeight = 8
 
   , pathStart = [worldWidth,worldHeight]
   , pathEnd = [0,0]
@@ -44,14 +44,7 @@ function onload() {
   // add onclick listener to handle clicks on canvas
   canvas.addEventListener("click", handleClick, false);
   context = canvas.getContext("2d");
-  spritesheet = new Image();
-  /*
-  http://websemantics.co.uk/online_tools/image_to_data_uri_convertor/
-  Image converted to data URI using above tool
-  */
-  spritesheet.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAAAgCAYAAACVf3P1AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wgFDDMDTGpyRwAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAC0UlEQVR42u2cP5KbMBTGH5kUKZXJAaIjvCPIJwCfwHK7DdyAI2AatyInkF2nEJSpOILxATKhTEeKXc2QHRsbL152Z78f4xnAjycGfXp6En8CIuroYxMQmI3PRERdN48GgwB1DwGCR7oLPUEwMlKO9Ndd6ImCkZF6rL8tbQftH+hhVPnX+vsE5YF78eurRQS8ISMM7uqnmzbSjfVzKTKOjXSDfv4Q/aCfg5ERERDMCgQIIEDwNvj95QgBgvn49vc7BAg+2piPqPvgE9GYDUcOCCBAACDA+VFKKWutdc45pZTSWmvXI8uyzNtaa61SSvltb5OmaUpENHTstSRJkjjnnLXWSimlEEIYY4xzzkVRFHk7rbXu+2dm1lrr93DNu7mgx1n5uX//4ZxzQghBRCSllP39fbsoiqI0TVNjjHluY4wxz4V5S8VkWZYlSZIQEYkn+r6ttZaZ2a8bY4w/Z6WU8g3hXmxp212654sIeANxHMdCCNE0TXPOJgzDMM/z3AvAi0QppaSUcujYa2Fm3mw2G37C7yvLsiQiyvM8D8Mw9OVVVVX1o+K9xXdqHQJ8IYvFYnE8Ho/GGHOuCxNCCCmlbNu2Lcuy9JUuhBBxHMdlWZZTCLAvxDRNU2bmtm3bUw1mv9/vd7vdbrVarZADvnOKoijW6/X6XGVGURQJIYRzzjEzh2EYEhE1TdMsl8ul/38q8RVFUfio54Xuo3BVVZXvbq211jeOe1+j/kMLL32AATngsxzQcy6P8wMCv13Xdd230Vrrfv51aw7IzFzXde3Px3fFzjlX13WdZVnGzNzPQ7XWOkmSRCmlDofDwR/7Vhs7JqIxEY0uGECAAECAs9I9LTOV0xF13Su8oXiunCnm9K6dvumXAwECREAAAQIAAQIIEIBXBe8FnxqlnmLqLyMMjFJPFz/tlxGGRqmn9k/9ZQREQPAmwK043IqbX4C4BmAu/gHUY66QV7+O0QAAAABJRU5ErkJggg==';
-  // When image is ready move on
-  spritesheet.onload = spriteReady;
+  createMap();
 }
 
 /*
@@ -75,11 +68,7 @@ function createMap() {
 }
 
 function draw() {
-  // If sprite is not ready,
-  if (!spritesheetLoaded) return;
-
-  var sprite = 0;
-
+  var color = 0;
   // pick color
   context.fillStyle = '#000000';
   // fill full canvas
@@ -89,18 +78,10 @@ function draw() {
     for (var y=0; y < worldHeight; y++) {
       // After filling the 2D array with 1 and 0
       // we can now select the correct tile to draw
-      sprite = world[x][y];
-
+      color = world[x][y] === 1 ? "#222" : "#FFF";
+      context.fillStyle = color;
       // context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
-      context.drawImage(spritesheet
-        , sprite*tileWidth
-        , 0
-        , tileWidth
-        , tileHeight
-        , x*tileWidth
-        , y*tileHeight
-        , tileWidth
-        , tileHeight);
+      context.fillRect(x*tileWidth,y*tileHeight,tileWidth,tileHeight);
     }
   }
   drawPath();
@@ -108,18 +89,15 @@ function draw() {
 
 function drawPath() {
   var length = currentPath.length;
-  var sprite;
+  var color;
   for (var i = 0; i < length; i++) {
-    sprite = 4; // Pathnode (as default)
-    if(i === 0) sprite = 2; // Startnode
-    if(i === length - 1) sprite = 3; // Endnode
+    color = "#AAA";                      // Pathnode (as default)
+    if(i === 0) color = "#F00";          // Startnode
+    if(i === length - 1) color = "#0F0"; // Endnode
 
-    context.drawImage(spritesheet
-      , sprite*tileWidth
-      , 0
-      , tileWidth
-      , tileHeight
-      , currentPath[i][0]*tileWidth
+    context.fillStyle = color;
+    context.fillRect(
+      currentPath[i][0]*tileWidth
       , currentPath[i][1]*tileHeight
       , tileWidth
       , tileHeight);
