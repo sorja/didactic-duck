@@ -126,7 +126,7 @@ function handleClick(e) {
     return;
   }
 
-  pathStart = pathEnd;7
+  pathStart = pathEnd;
   pathEnd = cell;
 
   var startTime = new Date().getTime();
