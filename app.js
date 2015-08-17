@@ -132,8 +132,15 @@ function handleClick(e) {
   var startTime = new Date().getTime();
   // calculate path
   currentPath = findPath(world,pathStart,pathEnd);
-  displayTime(startTime);
+  displayTimeAndLength(startTime, length);
   draw();
+}
+
+function displayTimeAndLength(time, length){
+  var curr = new Date().getTime();
+  document.getElementById("time").innerHTML = curr - time + "ms";
+  var length = currentPath.length;
+  document.getElementById("length").innerHTML = length;
 }
 
 function drawOnMap(cell){
@@ -170,7 +177,14 @@ function findPath(world, pathStart, pathEnd) {
   The idea is to implement more than one
   and then able to change it from the UI (here html page)
 */
-  var distanceFunction = ManhattanDistance;
+  distanceFunction = ManhattanDistance;
+  // this is just picking the distance function from ui
+  // This needs to be refactored though!
+  // TODO: ^^
+  var e = document.getElementById("heuristic_function");
+  if(e){
+    distanceFunction = e.value === "Diagonal" ? DiagonalDistance : ManhattanDistance;
+  }
   /*
     This is also for later use
   */
@@ -183,6 +197,10 @@ function findPath(world, pathStart, pathEnd) {
   */
   function ManhattanDistance(Point, Goal) {
     return abs(Point.x - Goal.x) + abs(Point.y - Goal.y);
+  }
+
+  function DiagonalDistance(Point, Goal) {
+    return max(abs(Point.x - Goal.x), abs(Point.y - Goal.y));
   }
 
   // Returns every available North, South, East or West
@@ -299,10 +317,6 @@ function findPath(world, pathStart, pathEnd) {
   } ();
 }
 
-function displayTime(e){
-  var curr = new Date().getTime();
-  document.getElementById("time").innerHTML = curr - e + "ms";
-}
 /*
   Basic node 'class' (function)
   Parent: Parent node
@@ -320,24 +334,4 @@ function Node(Parent, Point) {
     g:0
   };
   return node;
-}
-
-/*
-  This stuff is outside of the algorithm,
-  it's for the ui
-*/
-
-// Toggle drawing with shift, cause
-// too lazy to move mouse
-window.onkeyup = function(e) {
-  var key = e.keyCode ? e.keyCode : e.which;
-  var checkbox = document.getElementById("draw_on_map");
-  if (key == 16) {
-    checkbox.checked = !checkbox.checked;
-  }
-}
-
-function handleWallChanges(e){
-  chanceOfWall = +e.value/100;
-  createMap();
 }
