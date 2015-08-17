@@ -18,3 +18,13 @@ function handleWallChanges(e){
   chanceOfWall = +e.value/100;
   createMap();
 }
+
+function handleMapSizeChanges(e){
+  worldWidth = worldHeight = +e.value;
+  onload();
+}
+
+function handleCellSizeChanges(e){
+  tileWidth = tileHeight = +e.value;
+  onload();
+}
