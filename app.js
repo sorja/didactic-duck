@@ -93,16 +93,21 @@ function drawPath() {
   var length = currentPath.length;
   var color;
   for (var i = 0; i < length; i++) {
-    color = "#AAA";                      // Pathnode (as default)
-    if(i === 0) color = "#F00";          // Startnode
-    if(i === length - 1) color = "#0F0"; // Endnode
+    (function(i){
+      setTimeout(function(){
+        color = "#00A";                      // Pathnode (as default)
+        if(i === 0) color = "#F00";          // Startnode
+        if(i === length - 1) color = "#0F0"; // Endnode
 
-    context.fillStyle = color;
-    context.fillRect(
-      currentPath[i][0]*tileWidth
-      , currentPath[i][1]*tileHeight
-      , tileWidth
-      , tileHeight);
+        context.fillStyle = color;
+        context.fillRect(
+          currentPath[i][0]*tileWidth
+          , currentPath[i][1]*tileHeight
+          , tileWidth
+          , tileHeight);
+
+      }, i * 5)
+    }(i));
   }
 }
 
