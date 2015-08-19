@@ -75,12 +75,14 @@ function draw() {
   context.fillStyle = '#000000';
   // fill full canvas
   context.fillRect(0, 0, canvas.width, canvas.height);
+  var clear;
 
   for (var x=0; x < worldWidth; x++) {
     for (var y=0; y < worldHeight; y++) {
       // After filling the 2D array with 1 and 0
       // we can now select the correct tile to draw
-      color = world[x][y] === 1 ? "#222" : "#FFF";
+      clear = Math.random() > 0.7 ? "#FFF" : "#F1F1F1";
+      color = world[x][y] === 1 ? "#222" : clear;
       context.fillStyle = color;
       // context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
       context.fillRect(x*tileWidth,y*tileHeight,tileWidth,tileHeight);
