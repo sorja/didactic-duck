@@ -81,7 +81,8 @@ function draw() {
     for (var y=0; y < worldHeight; y++) {
       // After filling the 2D array with 1 and 0
       // we can now select the correct tile to draw
-      clear = Math.random() > 0.7 ? "#FFF" : "#F1F1F1";
+      var rand = (Math.floor(+Math.random() * 25 + 230)).toString(16);
+      clear = Math.random() > 0.5 ? "#FFF" : "#"+rand+rand+rand;
       color = world[x][y] === 1 ? "#222" : clear;
       context.fillStyle = color;
       // context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
