@@ -108,7 +108,7 @@ function drawPath() {
           , tileWidth
           , tileHeight);
 
-      }, i * 5)
+      }, i*i/i)
     }(i));
   }
 }
@@ -190,7 +190,19 @@ function findPath(world, pathStart, pathEnd) {
   // TODO: ^^
   var e = document.getElementById("heuristic_function");
   if(e){
-    distanceFunction = e.value === "Diagonal" ? DiagonalDistance : ManhattanDistance;
+    var val = e.value;
+
+    if(e.value === "Diagonal"){
+      distanceFunction = DiagonalDistance;
+    }
+
+    if(e.value === "Manhattan"){
+      distanceFunction = ManhattanDistance;
+    }
+
+    if(e.value === "None"){
+      distanceFunction = NoneDistance;
+    }
   }
   /*
     This is also for later use
@@ -208,6 +220,10 @@ function findPath(world, pathStart, pathEnd) {
 
   function DiagonalDistance(Point, Goal) {
     return max(abs(Point.x - Goal.x), abs(Point.y - Goal.y));
+  }
+
+  function NoneDistance(Point, Goal){
+    return 1;
   }
 
   // Returns every available North, South, East or West
