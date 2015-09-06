@@ -201,6 +201,10 @@ function findPath(world, pathStart, pathEnd) {
       distanceFunction = ManhattanDistance;
     }
 
+    if(e.value === "Euclidean"){
+      distanceFunction = EuclideanDistance;
+    }
+
     if(e.value === "None"){
       distanceFunction = NoneDistance;
     }
@@ -221,6 +225,10 @@ function findPath(world, pathStart, pathEnd) {
 
   function DiagonalDistance(Point, Goal) {
     return max(abs(Point.x - Goal.x), abs(Point.y - Goal.y));
+  }
+
+  function EuclideanDistance(Point, Goal){
+    return sqrt(abs(Point.x - Goal.x) + abs(Point.x - Goal.x))
   }
 
   function NoneDistance(Point, Goal){
