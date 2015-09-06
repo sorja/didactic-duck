@@ -118,7 +118,8 @@ function drawPath() {
 
 function drawVisitedNodes(){
   var length = visited.length;
-  console.log(visited);
+  if(!length) return;
+
   for (var i = 0; i < length; i++){
     var x = visited[i].x
     ,   y = visited[i].y
