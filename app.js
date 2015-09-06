@@ -9,6 +9,7 @@ worldWidth/worldHeight: how many blocks w/h
 tileHeight/tileWidth: image size in pxl
 pathStart/pathEnd/currentPath: path variables
 chanceOfWall: The chance of creating a wall
+visited: a list of visited nodes
 */
 var canvas = null
   , context = null
@@ -26,8 +27,10 @@ var canvas = null
   , pathEnd = [0,0]
   , currentPath = []
 
-  , chanceOfWall = 0.35
-  , elapsedTime = null;
+  , chanceOfWall = 0.15
+  , elapsedTime = null
+
+  , visited = [];
 
 // ie console fix
 if (typeof console == "undefined") var console = { log: function() {} };
@@ -70,20 +73,18 @@ function createMap() {
 }
 
 function draw() {
-  var color = 0;
   // pick color
   context.fillStyle = '#000000';
   // fill full canvas
   context.fillRect(0, 0, canvas.width, canvas.height);
-  var clear;
 
   for (var x=0; x < worldWidth; x++) {
     for (var y=0; y < worldHeight; y++) {
       // After filling the 2D array with 1 and 0
       // we can now select the correct tile to draw
       var rand = (Math.floor(+Math.random() * 25 + 230)).toString(16);
-      clear = Math.random() > 0.5 ? "#FFF" : "#"+rand+rand+rand;
-      color = world[x][y] === 1 ? "#222" : clear;
+      var clear = Math.random() > 0.5 ? "#FFF" : "#"+rand+rand+rand;
+      var color = world[x][y] === 1 ? "#222" : clear;
       context.fillStyle = color;
       // context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
       context.fillRect(x*tileWidth,y*tileHeight,tileWidth,tileHeight);
@@ -112,6 +113,31 @@ function drawPath() {
       }, i*i/i)
     }(i));
   }
+  drawVisitedNodes();
+}
+
+function drawVisitedNodes(){
+  var length = visited.length;
+  console.log(visited);
+  for (var i = 0; i < length; i++){
+    var x = visited[i].x
+    ,   y = visited[i].y
+    ,   f = visited[i].f
+    ,   g = visited[i].g
+    ,   value = visited[i].value;
+
+    var alpha = g/1000+0.15;
+
+    var color = "rgba(255,000,000,"+alpha+")";
+
+    context.fillStyle = color;
+    context.fillRect(
+        x*tileWidth
+      , y*tileHeight
+      , tileWidth
+      , tileHeight);
+  }
+  visited = [];
 }
 
 // handle click events on the canvas
@@ -314,6 +340,8 @@ function findPath(world, pathStart, pathEnd) {
       }
       // Save next node, and remove it from the array
       curr = Open.splice(min, 1)[0];
+      // save to draw it later
+      visited.push(curr)
       // Are we @end?
       if(curr.value === mypathEnd.value) {
         currPath = Closed[Closed.push(curr) - 1];
