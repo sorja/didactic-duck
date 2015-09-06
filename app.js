@@ -128,8 +128,7 @@ function drawVisitedNodes(){
     ,   value = visited[i].value;
 
     var alpha = g/1000+0.15;
-
-    var color = "rgba(255,000,000,"+alpha+")";
+    var color = "rgba("+(255-i/30)+","+i/30+","+i/20+","+alpha+")";
 
     context.fillStyle = color;
     context.fillRect(
