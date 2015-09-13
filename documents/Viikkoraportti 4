@@ -1,0 +1,6 @@
+Viikko #4
+--------
+
+Ohjelma suurimmaksi osaksi valmis, voisi implementoida vielä muitakin mutta riittänee tälle harjoitustyölle.
+Viimeismpänä implenetoitu väri, niihin ruutuihin jotka on käyty. Väri ei oikeasti tarkoita muuta, kuin mitä kauempana ollaan
+lähtöpisteestä, sille ei siis saa antaa tässä painoa-arvoa! (Merkitsee vain käydyt solmut)
