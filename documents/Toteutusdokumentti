@@ -1,0 +1,34 @@
+Toteutusdokumentti
+-------------------
+
+A* ohjelma kirjoitettiin kielellä javascript.
+Javascript apukirjastoja ei käytetty.
+Vain CSS framework (foundation) joka on epäoleellista.
+
+Aika ja tilavaativuus
+---------------------
+
+Tavoite  oli O((|E|+|V|)log|V|) mutta koska en käyttänyt
+esim.minimikekoa niin en päässyt niin lähelle tavoitetta.
+Heurestiikkaa muuttamalla saattaa olla pieni vaikutus algoritmin
+tehokkuutteen.
+
+Tilavaatiivuus on O(|E|)
+
+Vertailu
+--------
+Näin pienessä kartassa ei ole valtavia muutoksia millisekuinnesissa,
+mutta 1000 x 1000 kartan eri heurestiikoilla huomattiin,
+että manhattan toimi usein parhaiten, riippuen seinien asettelusta.
+Pienimmillä kartoilla NONE toimi parhaiten (eli Dijkstra -"poikkeus")
+
+Työn mahdolliset puutteet ja parannusehdotukset
+-----------------------------------------------
+Olisi voinut implementoida mm:
+  - Minimikeon
+  - Järkevän väri systeemin
+  - Ei random seiniä vaan esim. joku maze algoritmi
+  - Parempi ui? Ehkä kelpaa tällaiseen pieneen projektiin
+
+Lähteet
+https://en.wikipedia.org/wiki/A*_search_algorithm
