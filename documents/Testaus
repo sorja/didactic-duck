@@ -1,0 +1,17 @@
+Testaus
+-----
+
+Ohjelma testattiin ns. manuaalisesti, eli lisäämällä tarpeellisiin väleihin esim. 'console.log(this)' ja seuraamalla
+konsoliin tulevaa syötettä. Ohjelmaa ei tarvinnut paljon debuggata, toimi about suorilta käsin aika pitkälle, ja 
+kuitenkin javascript kyseessä niin ei mitään kummempia ongelmia senkään kanssa onneksi sitten tullut.
+Käytössä ollut selain oli Chrome ja sen dev tooleja käytetty. Myös jonkin verran konsoliin naputtelua suoraan, joka toimi ns.
+interpreterinä.
+
+Testaus tehtiin myös UI:n kautta muuttammalla arvoja, esim.
+ruudun koko: 1px
+ruudukon koko: 1000x1000
+seinän mahdollisuus: 0
+
+esimerkiksi tuolla pystyi varmistamaan, että heurestiikat (manhattan vs diagonal) toimivat oikein.
+
+* Testeissä EI käytetty ulkopuolista framework ! *
