@@ -30,7 +30,8 @@ var canvas = null
   , chanceOfWall = 0.15
   , elapsedTime = null
 
-  , visited = [];
+  , visited = []
+  , mazeVisited = [[]];
 
 // ie console fix
 if (typeof console == "undefined") var console = { log: function() {} };
@@ -65,8 +66,10 @@ function spriteReady() {
 function createMap() {
   for (var x=0; x < worldWidth; x++) {
     world[x] = [];
+    mazeVisited[x] = [];
     for (var y=0; y < worldHeight; y++) {
       world[x][y] = Math.random() > chanceOfWall ? 0 : 1;
+      mazeVisited[x][y] = -1;
     }
   }
   draw();
@@ -99,7 +102,7 @@ function drawPath() {
   for (var i = 0; i < length; i++) {
     (function(i){
       setTimeout(function(){
-        color = "#00A";                      // Pathnode (as default)
+        color = "#F00";                      // Pathnode (as default)
         if(i === 0) color = "#F00";          // Startnode
         if(i === length - 1) color = "#0F0"; // Endnode
 
