@@ -27,7 +27,7 @@ var canvas = null
   , pathEnd = [0,0]
   , currentPath = []
 
-  , chanceOfWall = 0.15
+  , chanceOfWall = 0.35
   , elapsedTime = null
 
   , visited = []
@@ -121,6 +121,7 @@ function drawPath() {
 
 function drawVisitedNodes(){
   var length = visited.length;
+
   if(!length) return;
 
   for (var i = 0; i < length; i++){
@@ -130,10 +131,14 @@ function drawVisitedNodes(){
     ,   g = visited[i].g
     ,   value = visited[i].value;
 
-    var alpha = g/1000+0.15;
-    var color = "rgba("+(255-i/30)+","+i/30+","+i/20+","+alpha+")";
 
-    context.fillStyle = color;
+    var change = i * 255 / length;
+    var alpha = 0.3 + 0.7 * change / 255;
+
+    var rgb = HUSL.toHex(change, 100, 50);
+    // var color = "rgba("+(255-change)+",0,"+change+","+alpha+")";
+    //var color = "rgba("+rgb[0]*255+","+rgb[1]*255+","+rgb[2]*255+","+alpha+")";
+    context.fillStyle = rgb;
     context.fillRect(
         x*tileWidth
       , y*tileHeight
