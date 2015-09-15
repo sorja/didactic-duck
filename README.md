@@ -23,3 +23,9 @@ Settings can be found on the right panel!
 ----------------------
 
 Global variables are defined in app.js
+
+For best view of algo:
+----------------------
+* cell size: 1 (or 2)
+* map size: 800 (or 1200+)
+* click maze
