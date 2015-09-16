@@ -262,7 +262,10 @@ function findPath(world, pathStart, pathEnd) {
   }
 
   function EuclideanDistance(Point, Goal){
-    return sqrt(abs(Point.x - Goal.x) + abs(Point.x - Goal.x))
+      var dx=Point.x-Goal.x
+      , dy=Point.y - Goal.y;
+
+    return sqrt(dx*dx + dy*dy);
   }
 
   function NoneDistance(Point, Goal){
