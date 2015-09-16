@@ -17,69 +17,75 @@
       input[type="number"], select{
         width:100px !important;
       }
+      h1, h2, h3, h4{
+        margin:0;
+        display:inline;
+      }
+      .right{
+        float:right;
+      }
     </style>
   </head>
   <body onload='onload()'>
     <div class="">
-      <div class="large-9 columns">
         <h1>A*</h1>
+
+        <button class="right" onClick='createMap()'> New map </button>
+        <button class="right" onClick='maze()'> New maze </button>
+
+            <h2>Settings</h2>
+            <hr/>
+            <h3>Map settings</h3>
+            <label> Draw on map </label>
+            <input type="checkbox" id="draw_on_map" />
+
+            <label>Chance of wall (%)</label>
+            <input type="number"
+            max="100"
+            min="0"
+            tick="1"
+            id="chance_of_wall"
+            onchange="handleWallChanges(this)"
+            value="35"/>
+
+            <label> Map size (x * y) </label>
+            <input type="number"
+            max="350"
+            min="10"
+            tick="1"
+            id="map_size"
+            onchange="handleMapSizeChanges(this)"
+            value="100"/>
+
+            <label> Cell size (px) </label>
+            <input type="number"
+            max="25"
+            min="1"
+            tick="1"
+            id="cell_size"
+            onchange="handleCellSizeChanges(this)"
+            value="1"/>
+
+            <br />
+            <h3>Algorithm settings</h3>
+            <label>Heuristic function</label>
+            <select id="heuristic_function">
+              <option>Manhattan</option>
+              <option>Diagonal</option>
+              <option>Euclidean</option>
+              <option>None</option>
+            </select>
+
+            <h3>Info</h3>
+            <small>Elapsed time: <span id="time"> none </span></small>
+            <small>Path length: <span id="length"> none </span></small>
         <canvas id="canvas"></canvas>
-      </div>
-      <div class="large-3 columns">
-        <br/>
-        <button onClick='createMap()'> New map </button>
-        <button onClick='maze()'> New maze </button>
+
+
         <p> Clicking on the map generates a new route from the old 'end' point. <br/>
-        Clicking shift allows user to create walls or remove them <p>
+          Clicking shift allows user to create walls or remove them <br />
+          Traverse everything by clicking on a wall<p>
 
-        <h2>Settings</h2>
-        <hr/>
-        <h3>Map settings</h3>
-        <label> Draw on map </label>
-        <input type="checkbox" id="draw_on_map" /><br />
-
-        <label>Chance of wall (%)</label>
-        <input type="number"
-               max="100"
-               min="0"
-               tick="1"
-               id="chance_of_wall"
-               onchange="handleWallChanges(this)"
-               value="35"/><br/>
-
-        <label> Map size (x * y) </label>
-        <input type="number"
-               max="350"
-               min="10"
-               tick="1"
-               id="map_size"
-               onchange="handleMapSizeChanges(this)"
-               value="100"/><br/>
-
-        <label> Cell size (px) </label>
-        <input type="number"
-               max="25"
-               min="1"
-               tick="1"
-               id="cell_size"
-               onchange="handleCellSizeChanges(this)"
-               value="8"/><br/>
-
-
-        <h3>Algorithm settings</h3>
-        <label>Heuristic function</label>
-        <select id="heuristic_function">
-          <option>Manhattan</option>
-          <option>Diagonal</option>
-          <option>Euclidean</option>
-          <option>None</option>
-        </select>
-
-        <h3>Info</h3>
-        <h2>Elapsed time: <span id="time"> none </span><h2>
-        <h2>Path length: <span id="length"> none </span><h2>
-      </div>
-    </div>
     <script src="husl.js"></script>
     <script src="app.js"></script>
     <script src="maze.js"></script>

@@ -17,11 +17,11 @@ var canvas = null
   , spritesheetLoaded = false
 
   , world = [[]]
-  , worldWidth = 100
-  , worldHeight = 100
+  , worldWidth = window.innerWidth - 30
+  , worldHeight = window.innerWidth - 30
 
-  , tileWidth = 8
-  , tileHeight = 8
+  , tileWidth = 1
+  , tileHeight = 1
 
   , pathStart = [worldWidth,worldHeight]
   , pathEnd = [0,0]

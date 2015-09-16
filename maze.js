@@ -1,11 +1,18 @@
 function maze(){
-  var length = worldWidth * worldHeight;
   chanceOfWall = 1;
+  var floor = Math.floor;
+  var random = Math.random;
+  var length = worldWidth * worldHeight;
+//  var startX = floor(random()*worldWidth)
+//    , startY = floor(random()*worldHeight);
+  var startX = floor(worldWidth/2),
+      startY = floor(worldHeight/2);
+  var curr = [startX, startY];
+
   createMap();
-  var curr = [0,1];
-  while(length-- > 0){
+  while(length){
     n = neighbours(curr[0], curr[1]);
-    var r = Math.floor(Math.random()*n.length);
+    var r = floor(random()*n.length);
     var nx = n[r].x
       , ny = n[r].y;
     if(!mazeVisited[nx][ny] === -1){
@@ -13,8 +20,10 @@ function maze(){
     } else {
       curr = [nx,ny];
       world[nx][ny] = 0;
+      length--;
       continue;
     }
+    length--;  
   }
   draw();
 }
